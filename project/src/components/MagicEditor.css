@@ -1,0 +1,97 @@
+/* =============================================================
+   MagicEditor.css
+   Blockly 魔術エディタ用スタイル
+   ============================================================= */
+
+/* ----- エラー状態: 汎用クラス ----- */
+
+/* FieldNumber などの背景を赤にする（Blockly デフォルトを上書き） */
+.field-error-bg rect.blocklyFieldRect {
+  fill: #ffcccc !important;
+  stroke: #ff0000 !important;
+  stroke-width: 1.5px !important;
+}
+
+/* テキスト要素を赤にする */
+.field-error-text text.blocklyText,
+.field-error-text text {
+  fill: #cc0000 !important;
+}
+
+/* FieldLabel のヒント文字（赤警告） */
+.blocklyText.mp-pct-hint-error {
+  fill: #cc0000 !important;
+}
+
+/* ----- スライダー用 SVG スタイル補助 ----- */
+
+/* FieldSlider のグループ：ホバー時のカーソル */
+.blocklyField[data-field-type='field_slider'] {
+  cursor: ew-resize !important;
+}
+
+/* スライダーの thumb にホバー効果（SVG filter では難しいため JS 側でも制御） */
+.blockly-slider-thumb {
+  transition: r 0.1s ease;
+}
+
+/* ----- Blockly ワークスペース全体のベーススタイル ----- */
+
+/* ブロックエディタ領域が画面をはみ出さないようにする */
+.blocklyWidgetDiv,
+.blocklyDropDownDiv {
+  z-index: 1000 !important;
+}
+
+/* フライアウト内でのスライダーは操作不可を視覚的に示す */
+.blocklyFlyout .blocklyField {
+  opacity: 0.85;
+}
+
+/* ----- カラーバリアント（Blockly 以外の UI 用） ----- */
+
+.magic-mp-error-indicator {
+  color: #cc0000;
+  font-size: 0.8rem;
+  margin-left: 0.5rem;
+}
+
+.magic-mp-ok-indicator {
+  color: #22c55e;
+  font-size: 0.8rem;
+  margin-left: 0.5rem;
+}
+/* ===== サイドバー閉じた状態 ===== */
+.sidebar.closed {
+  width: 0 !important;
+  min-width: 0 !important;
+  border: none !important;
+  overflow: hidden;
+}
+
+/* サイドバー内も完全に消す */
+.sidebar.closed * {
+  display: none !important;
+}
+
+/* Blocklyを全幅に */
+.container.sidebar-closed .blocklyDiv {
+  width: 100% !important;
+}
+
+/* 念のため境界線も消す */
+.container.sidebar-closed {
+  border-right: none !important;
+  border-left: none !important;
+}
+
+/* Blocklyの謎の灰色ライン消す */
+.blocklyScrollbarVertical,
+.blocklyScrollbarHorizontal {
+  display: none !important;
+}
+
+/* SVGの境界線を消す */
+.blocklySvg {
+  outline: none !important;
+}
