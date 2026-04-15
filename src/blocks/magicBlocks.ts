@@ -1100,6 +1100,9 @@ export const defineBlocks = () => {
       };
 
       self.updateLayout_.call(self);
+      // フライアウト内では init() 時点で親接続が未完のため BLOCK_MOVE が抑制される。
+      // マイクロタスクで接続確立後に再評価し、開始ブロック内なら詳細レイアウトへ切り替える。
+      queueMicrotask(() => { if (!self.layoutBusy_) self.updateLayout_.call(self, false); });
 
       this.setOnChange((e: Blockly.Events.Abstract) => {
         if (self.layoutBusy_) return;
