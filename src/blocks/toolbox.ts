@@ -13,6 +13,7 @@ export const toolbox = {
             START_MODIFIER: {
               block: {
                 type: 'magic_modifier',
+                extraState: { payload: { isDetailed: true } },
               },
             },
           },

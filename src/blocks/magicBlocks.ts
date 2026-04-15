@@ -39,6 +39,8 @@ export interface MagicModifierPayload {
   summonAngleV: number;
   summonAngleH: number;
   resummonMp: number;
+  /** ツールボックス内で「詳細版（開始ブロック接続済み）」として描画するためのフラグ。保存対象外。 */
+  isDetailed?: boolean;
 }
 
 const defaultModifierPayload = (): MagicModifierPayload => ({
@@ -357,7 +359,8 @@ const MODIFIER_LAYOUT_INPUTS: Record<string, readonly string[]> = {
 
 function getModifierLayoutKey(block: ModifierBlock): keyof typeof MODIFIER_LAYOUT_INPUTS {
   const parent = block.getParent();
-  if (parent?.type !== 'magic_start') {
+  const isStartMode = parent?.type === 'magic_start' || !!block.modifierPayload_.isDetailed;
+  if (!isStartMode) {
     const et = block.modifierPayload_.effectType;
     if (et === 'SUMMON') {
       return (block.modifierPayload_.summonMethod || 'LOOK') === 'AXIS' ? 'effect:SUMMON:AXIS' : 'effect:SUMMON:LOOK';
@@ -966,7 +969,7 @@ export const defineBlocks = () => {
           }
           while (this.inputList.length) this.removeInput(this.inputList[0].name);
           const parent    = this.getParent();
-          const startMode = parent?.type === 'magic_start';
+          const startMode = parent?.type === 'magic_start' || !!this.modifierPayload_.isDetailed;
           if (startMode) {
             this.appendDummyInput('S1').appendField('節約');
             this.appendDummyInput('S2').appendField('チャージ時間').appendField(magicFieldNumber(0.1,0.1,undefined,0.05),'CHARGE_TIME').appendField('秒');
@@ -1148,7 +1151,9 @@ export const defineBlocks = () => {
 
     saveExtraState(this: ModifierBlock) {
       this.syncFromVisibleFields_();
-      return { payload: { ...this.modifierPayload_ } };
+      // isDetailed はツールボックス表示専用フラグのため保存しない
+      const { isDetailed: _det, ...payloadToSave } = this.modifierPayload_;
+      return { payload: payloadToSave };
     },
     loadExtraState(this: ModifierBlock, state: { payload?: MagicModifierPayload }) {
       if (state?.payload) this.modifierPayload_ = { ...defaultModifierPayload(), ...state.payload };
@@ -1325,7 +1330,7 @@ export const calculateTotalMP = (workspace: Blockly.Workspace): number => {
     let trig = start.getNextBlock();
     while (trig) {
       if (trig.type === 'magic_trigger') {
-        // EXECUTE スロットの有無で NORMAL モードを判定
+        // EXECUTE スロットの有無で NORMAL モードを判定ダンゴムシ
         const execInp = trig.getInput('EXECUTE');
         if (execInp) {
           if (trig.getFieldValue('AUTO_CAST') === 'TRUE') isPerSecond = true;
