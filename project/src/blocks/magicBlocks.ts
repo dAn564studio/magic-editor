@@ -1330,7 +1330,7 @@ export const calculateTotalMP = (workspace: Blockly.Workspace): number => {
     let trig = start.getNextBlock();
     while (trig) {
       if (trig.type === 'magic_trigger') {
-        // EXECUTE スロットの有無で NORMAL モードを判定
+        // EXECUTE スロットの有無で NORMAL モードを判定ダンゴムシ
         const execInp = trig.getInput('EXECUTE');
         if (execInp) {
           if (trig.getFieldValue('AUTO_CAST') === 'TRUE') isPerSecond = true;
