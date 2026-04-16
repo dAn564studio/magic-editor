@@ -688,7 +688,7 @@ export const defineBlocks = () => {
             .appendField(new Blockly.FieldDropdown([
               ['自分','SELF'],   ['敵','ENEMY'],    ['味方','ALLY'],
               ['床面','GROUND'], ['天井','CEILING'],['召喚物','SUMMON'],
-              ['空気','AIR'],    ['肺','LUNG'], ['肺','LUNG'],
+              ['空気','AIR'],    ['肺','LUNG'],
               ['手','HAND'],     ['足','FOOT'],     ['頭','HEAD'],
               ['胴','BODY'],     ['腰','WAIST'],    ['腕','ARM'],
               ['目','EYE'],      ['耳','EAR'],      ['口','MOUTH'],
