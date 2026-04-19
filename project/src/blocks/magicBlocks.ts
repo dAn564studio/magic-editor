@@ -686,7 +686,7 @@ export const defineBlocks = () => {
           }
           rowInput
             .appendField(new Blockly.FieldDropdown([
-              ['自分','SELF'],     ['味方','ALLY'],
+              ['自分','SELF'],     ['味方','ALLY'],['敵','ENEMY'],
               ['床面','GROUND'], ['天井','CEILING'],['召喚物','SUMMON'],
               ['空気','AIR'],    ['肺','LUNG'],
               ['手','HAND'],     ['足','FOOT'],     ['頭','HEAD'],
