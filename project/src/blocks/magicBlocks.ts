@@ -978,7 +978,7 @@ export const defineBlocks = () => {
             if (this.modifierPayload_.behavior === 'MAINTAIN') {
               this.appendDummyInput('S5').appendField('維持中の消費').appendField(new Blockly.FieldCheckbox(this.modifierPayload_.hasMaintainCost?'TRUE':'FALSE'),'HAS_MAINTAIN_COST');
               if (this.modifierPayload_.hasMaintainCost)
-                this.appendDummyInput('S6').appendField('維持消費').appendField(magicFieldNumber(0.1,0.1,undefined,0.05),'MAINTAIN_COST_SEC').appendField('s');
+                this.appendDummyInput('S6').appendField('維持消費').appendField(magicFieldNumber(0.1,0.1,undefined,0.05),'MAINTAIN_COST_SEC').appendField('MP/s');
             }
             this.appendDummyInput('S_MP0').appendField('MP消費タイミング分配：').appendField(new Blockly.FieldLabel(''),'MP_PCT_HINT');
             this.appendDummyInput('S_MP1').appendField('チャージ開始時').appendField(new FieldSlider(34,0,100),'MP_START_PCT').appendField('%');
