@@ -257,7 +257,7 @@ function appendTransformFields(block: Blockly.Block): void {
   block.appendDummyInput('EFF_SHAPE').appendField('形').appendField(new Blockly.FieldDropdown(SHAPE_OPTIONS),'SHAPE');
   block.appendDummyInput('EFF_QUANTITY').appendField('変形生成個数').appendField(new Blockly.FieldNumber(1,1),'QUANTITY').appendField('個');
   block.appendDummyInput('EFF_HARDNESS').appendField('硬度').appendField(new Blockly.FieldNumber(0),'HARDNESS');
-  block.appendDummyInput('EFF_WEIGHT').appendField('重さ').appendField(new Blockly.FieldNumber(0,undefined,undefined,1),'WEIGHT').appendField('g');
+  block.appendDummyInput('EFF_WEIGHT').appendField('重さ').appendField(new Blockly.FieldNumber(0,undefined,undefined,1),'WEIGHT').appendField('kg');
   block.appendDummyInput('EFF_WIDTH').appendField('横幅 ×').appendField(new Blockly.FieldNumber(1,0,undefined,0.1),'WIDTH').appendField('倍');
   block.appendDummyInput('EFF_LENGTH').appendField('長さ ×').appendField(new Blockly.FieldNumber(1,0,undefined,0.1),'LENGTH').appendField('倍');
 }
